@@ -1,0 +1,17 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; 
+  top: 0; /* Відступ від верху */
+  left: 50%; /* Відступ від лівого краю */
+  transform: translateX(-50%); /* Центрування хедера */
+  width: 100%; /* Ширина хедера */
+  max-width: 1184px;
+height: 48px; 
+  color: white; /* Колір тексту */
+  /* padding: 10px 0;  */
+  z-index: 1000; /* Забезпечує, що хедер буде поверх інших елементів */
+  box-sizing: border-box; /* Щоб padding враховувався в ширині елемента */
+  border-radius: 0 0 10px 10px;
+}

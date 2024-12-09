@@ -1,0 +1,34 @@
+.buttonReg{
+    border-radius: 12px;
+    border: none;
+padding: 14px 39px;
+width: 166px;
+height: 48px;
+background-color: #121417;
+color: white;
+}
+.buttonLog{
+    border: none;
+    background-color: white;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+.login{
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+.loginP{
+    margin: 0;
+    margin-top: 2px;
+}
+.nav{
+    width: 255px;
+height: 48px;
+display: flex;
+gap: 16px;
+/* display: inline; */
+/* justify-content: center; */
+}

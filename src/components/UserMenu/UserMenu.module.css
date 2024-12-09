@@ -1,0 +1,17 @@
+.button{
+    border-radius: 10px;
+    border: none;
+padding: 14px 39px;
+width: 150px;
+height: 48px;
+background-color: #121417;
+color: white;
+}
+.name{
+    color: black;
+    margin-top: 14px;
+}
+.nav{
+    display: flex;
+    gap: 16px;
+}
