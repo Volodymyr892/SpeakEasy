@@ -1,17 +1,14 @@
 .header{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed; 
-  top: 0; /* Відступ від верху */
-  left: 50%; /* Відступ від лівого краю */
-  transform: translateX(-50%); /* Центрування хедера */
-  width: 100%; /* Ширина хедера */
-  max-width: 1184px;
-height: 48px; 
-  color: white; /* Колір тексту */
-  /* padding: 10px 0;  */
-  z-index: 1000; /* Забезпечує, що хедер буде поверх інших елементів */
-  box-sizing: border-box; /* Щоб padding враховувався в ширині елемента */
-  border-radius: 0 0 10px 10px;
+    justify-content: space-between; /* Розташування елементів по горизонталі */
+    align-items: center; /* Вирівнювання по вертикалі */
+    width: 100%; 
+    max-width: 1440px; /* Максимальна ширина контейнера */
+    /* height: 88px;  */
+    padding: 0 128px; 
+    color: white; 
+    box-sizing: border-box; /* Врахування паддингів та бордерів у ширину/висоту */
+    border-radius: 0 0 10px 10px; /* Закруглення нижніх кутів */
+    background-color: white; /* Фон хедера */
+    margin: 20px auto 20px;
 }
