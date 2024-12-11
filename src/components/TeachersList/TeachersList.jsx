@@ -11,6 +11,12 @@ export default function TeachersList() {
                 <li>
                     <Teacher/>
                 </li>
+                <li>
+                    <Teacher/>
+                </li>
+                <li>
+                    <Teacher/>
+                </li>
             </ul>
             <button className={css.button} type="submit">Load more</button>
        </div>
