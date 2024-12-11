@@ -1,0 +1,91 @@
+ul, ol {
+    list-style: none; /* Видаляє маркери списку */
+    margin: 0; /* Скидає зовнішні відступи */
+    padding: 0; /* Скидає внутрішні відступи */
+  }
+.container{
+    display: flex;
+    gap: 48px;
+    border-radius: 24px;
+    padding: 24px;
+    width: 1184px;
+    /* height: 328px; */
+    background-color: #ffff;
+    margin-bottom: 32px;
+  }
+.list{
+    display: flex ;
+    gap: 64px;
+}
+.itemContainer{
+    display: flex;
+    gap: 32px;
+    width: 697px;
+height: 26px;
+}
+.item{
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    text-align: center;
+}
+.itemOne{
+    display: flex;
+    gap: 149px;
+    margin-bottom: 32px;
+}
+.imgCont{
+    border: 3px solid #fbe9ba;
+border-radius: 100px;
+width: 120px;
+height: 120px;
+display: flex;
+justify-content: center; /* Центрує по горизонталі */
+align-items: center; 
+}
+
+.pTop{
+    /* font-family: var(--font-family); */
+font-weight: 500;
+font-weight: bold;
+font-size: 16px;
+line-height: 1.5;
+color: #121417;
+margin: 0;
+}
+.nameTecher{
+    margin: 0;
+font-weight: 500;
+font-size: 16px;
+line-height: 150%;
+color: #8a8a89;
+}
+.name{
+    margin: 8px 0 0 0;
+    /* font-family: var(--font-family); */
+font-weight: 500;
+font-weight: bold;
+font-size: 24px;
+line-height: 1;
+color: #121417;
+}
+.imgIcon{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.speaks{
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #8a8a89;
+    margin: 0;
+}
+.speaksSpan{
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: #121417;
+}
+.span{
+    color: #121417;
+}
