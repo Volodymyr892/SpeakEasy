@@ -1,10 +1,11 @@
 import css from "./ModalBook.module.css"
+import x from "../../assets/x.svg"
 export default function ModalBook({onClose}) {
     return(
         <div className={css.container} >
         <div className={css.modal}>
         <button className={css.closeButton} onClick={onClose}>
-          ✖
+          <img src={x} alt="x" />
         </button>
            <div className={css.containerTitle}>
                 <h2 className={css.title}>Book trial lesson</h2>

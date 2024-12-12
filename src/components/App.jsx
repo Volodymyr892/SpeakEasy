@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Layout from "./Layout/Layout";
 import { lazy } from "react";
 import PrivateRoute from "./PrivateRoute";
@@ -13,16 +13,24 @@ const HomePage = lazy(()=> import('../pages/HomePage/HomePage'))
 
 
 export default function App() {
+  const location = useLocation();
 
+ const background = location.state && location.state.background;
   return (
     <Layout>
-      <Routes>
+      <Routes location={background || location}>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/teachers" element={<TeachersPage/>}/>
         <Route path="/favorites" element={<PrivateRoute component={<FavoritesPage/>} redirectTo={"/login"}/>}/>
-        <Route path="/registration" element={<RestrictedRoute component={<RegisterForm/>} redirectTo={"/favorites"}/>}/>
-        <Route path="/login" element={<RestrictedRoute component={<LoginForm/> } redirectTo={"/favorites"}/>}/>
-      </Routes>
+        </Routes>
+
+        {background && (
+
+          <Routes>
+            <Route path="/registration" element={<RegisterForm/>}/>
+            <Route path="/login" element={<LoginForm/>}/>
+          </Routes>
+        )}
     </Layout>
   )
 }

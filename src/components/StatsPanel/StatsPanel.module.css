@@ -16,7 +16,6 @@ padding: 40px 121px;
     gap: 16px;
 }
 .number{
-    /* font-family: var(--font-family); */
 font-weight: 500;
 font-weight: bold;
 font-size: 28px;
