@@ -1,7 +1,30 @@
 import { useNavigate } from "react-router-dom";
 import css from "./RegisterForm.module.css"
-import { Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import x from "../../assets/x.svg"
+import * as Yup from "yup"
+import { emailPattern, nameRegExp } from "../../constans";
+
+const UserShema = Yup.object().shape(
+    {
+        name: Yup.string()
+        // .matches(nameRegExp, "Volodymyr" )
+        .min(3, "Too Short!")
+        .max(50, "Too Long!")
+        .required("Required"),
+        email: Yup.string()
+        .matches(emailPattern, "Format example@mail.com")
+        .min(3, "Too Short!")
+        .max(50, "Too Long!")
+        .required("Required"),
+        password:Yup.string()
+        .min(3, "Too Short!")
+        .max(50, "Too Long!")
+        .required("Required"),
+    }
+)
+
+
 export default function RegisterForm() {
      const navigate = useNavigate();
     
@@ -22,17 +45,40 @@ export default function RegisterForm() {
                         name: "",
                         email: "",
                         password: "",
-                        }}>
+                        }}
+                        validationSchema={UserShema}
+                        >
                             <Form className={css.form}>
-                            <label className={css.label}>
-                                <Field type="name" name="name"   placeholder="Name"  className={css.input}/>
-                                </label>
-                                <label className={css.label}>
-                                <Field type="email"   placeholder="Email" name="email" className={css.input}/>
-                                </label>
-                                <label  className={css.label}>
-                                <Field type="email" name="email" placeholder="Password" className={css.input}/>
-                                </label>
+                            {/* <label className={css.label}/> */}
+                                <Field
+                                className={css.input}
+                                type="name" 
+                                name="name"   
+                                placeholder="Name"  
+                                />
+                                <ErrorMessage 
+                                className={css.errorMessage} 
+                                name="name" 
+                                component="span"/>
+                             {/* </label> */}
+                                {/* <label className={css.label}> */}
+                                <Field 
+                                type="email"   
+                                placeholder="Email" 
+                                name="email" 
+                                className={css.input}/>
+                                <ErrorMessage className={css.errorMessage} name="email" component="span"/>
+                                {/* </label> */}
+                                {/* <label  className={css.label}> */}
+                                <Field 
+                                type="password" 
+                                name="password" 
+                                placeholder="Password" 
+                                className={css.input}/>
+                                <ErrorMessage 
+                                className={css.errorMessage} 
+                                name="password" component="span"/>
+                                {/* </label> */}
                                 <button className={css.button} type="submit">Sign Up</button>
                             </Form>
                         </Formik>

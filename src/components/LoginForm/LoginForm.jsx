@@ -1,7 +1,24 @@
 import { useNavigate } from "react-router-dom";
 import css from "./LoginForm.module.css"
-import { Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import x from "../../assets/x.svg"
+import * as Yup from "yup"
+import { emailPattern } from "../../constans";
+
+const UserShema = Yup.object().shape(
+    {
+        email: Yup.string()
+        .matches(emailPattern, "Format example@mail.com")
+        .min(3, "Too Short!")
+        .max(50, "Too Long!")
+        .required("Required"),
+        password:Yup.string()
+        .min(3, "Too Short!")
+        .max(50, "Too Long!")
+        .required("Required"),
+    }
+)
+
 export default function LoginForm() {
     const navigate = useNavigate();
 
@@ -21,14 +38,34 @@ export default function LoginForm() {
             <Formik initialValues={{
                 email: "",
                 password: "",
-                }}>
+                }}
+                validationSchema={UserShema}
+                >
                     <Form className={css.form}>
-                        <label className={css.label}>
-                        <Field type="email"   placeholder="Email" name="email" className={css.input}/>
-                        </label>
-                        <label  className={css.label}>
-                        <Field type="email" name="email" placeholder="Password" className={css.input}/>
-                        </label>
+                        {/* <label className={css.label}> */}
+                        <Field 
+                        className={css.input}
+                        type="email"   
+                        placeholder="Email" 
+                        name="email" 
+                        />
+                        <ErrorMessage 
+                        className={css.errorMessage} 
+                        name="email" 
+                        component="span"/>
+                        {/* </label> */}
+                        {/* <label  className={css.label}> */}
+                        <Field 
+                        className={css.input}
+                        type="password" 
+                        name="password" 
+                        placeholder="Password" 
+                        />
+                        <ErrorMessage 
+                        className={css.errorMessage} 
+                        name="password" 
+                        component="span"/>
+                        {/* </label> */}
                         <button className={css.button} type="submit">Log in</button>
                     </Form>
                 </Formik>
