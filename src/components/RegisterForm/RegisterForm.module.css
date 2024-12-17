@@ -67,10 +67,12 @@ border: 1px solid rgba(18, 20, 23, 0.1);
 border-radius: 12px;
 padding: 16px 16px 16px 18px;
 margin-bottom: 16px;
+/* border: hidden; */
+outline: none;
 }
-.input:last-of-type{
+/* .input:last-of-type{
   margin-bottom: 0;
-  }
+  } */
 .button{
 border-radius: 12px;
 border: none;
@@ -86,3 +88,30 @@ transition: all 0.3s ease;
 .button:hover{
 background-color: #ffdc86;
 }
+.errorMessage{
+  display: block;
+  font-size: 14px;
+  color: red;
+  line-height: 18px;
+  /* position: absolute; */
+  margin-bottom: 16px;
+}
+.inputError {
+  border-color: red;
+  color: red;
+}
+.placeholderError::placeholder {
+  color: red;
+}
+
+/* .input::placeholder,
+.inputEmail::placeholder {
+    color: #f4c550;
+} */
+
+/* .input:focus,
+.input:active,
+.inputEmail:focus,
+.inputEmail:active {
+    color: #f4c550;
+} */

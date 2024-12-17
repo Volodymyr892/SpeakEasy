@@ -11,11 +11,11 @@ const UserShema = Yup.object().shape(
         .matches(emailPattern, "Format example@mail.com")
         .min(3, "Too Short!")
         .max(50, "Too Long!")
-        .required("Required"),
+        .required("Enter your email"),
         password:Yup.string()
-        .min(3, "Too Short!")
-        .max(50, "Too Long!")
-        .required("Required"),
+        .min(3, "Password should be at least 8 characters!")
+        .max(50, "Password should be max 64 characters!")
+        .required("Enter your password"),
     }
 )
 
@@ -41,10 +41,15 @@ export default function LoginForm() {
                 }}
                 validationSchema={UserShema}
                 >
-                    <Form className={css.form}>
-                        {/* <label className={css.label}> */}
+                    {({errors, touched, values})=> (<Form className={css.form}>
                         <Field 
-                        className={css.input}
+                        className={`${css.input} ${
+                            errors.password && touched.password
+                            ? `${css.inputError} ${css.placeholderError}`
+                            : values.password
+                            ? css.inputFilled
+                            : ""
+                        }`}
                         type="email"   
                         placeholder="Email" 
                         name="email" 
@@ -53,10 +58,14 @@ export default function LoginForm() {
                         className={css.errorMessage} 
                         name="email" 
                         component="span"/>
-                        {/* </label> */}
-                        {/* <label  className={css.label}> */}
                         <Field 
-                        className={css.input}
+                        className={`${css.input} ${
+                        errors.password && touched.password
+                        ? `${css.inputError} ${css.placeholderError}`
+                        : values.password
+                        ? css.inputFilled
+                        : ""
+                        }`} 
                         type="password" 
                         name="password" 
                         placeholder="Password" 
@@ -65,9 +74,8 @@ export default function LoginForm() {
                         className={css.errorMessage} 
                         name="password" 
                         component="span"/>
-                        {/* </label> */}
                         <button className={css.button} type="submit">Log in</button>
-                    </Form>
+                    </Form>)}
                 </Formik>
             </div>
         </div>
