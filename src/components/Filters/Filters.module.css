@@ -39,6 +39,7 @@ font-size: 18px;
 line-height: 1.1;
 color: rgba(18, 20, 23, 0.2);
 margin-top: 2px;
+/* outline: none; */
 }
 .select:focus .option {
     background-color: transparent !important; /* Прибираємо фон при фокусі */
