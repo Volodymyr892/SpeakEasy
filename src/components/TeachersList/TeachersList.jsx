@@ -8,7 +8,7 @@ export default function TeachersList() {
                 <li>
                     <Teacher/>
                 </li>
-                <li>
+                {/* <li>
                     <Teacher/>
                 </li>
                 <li>
@@ -16,7 +16,7 @@ export default function TeachersList() {
                 </li>
                 <li>
                     <Teacher/>
-                </li>
+                </li> */}
             </ul>
             <button className={css.button} type="submit">Load more</button>
        </div>

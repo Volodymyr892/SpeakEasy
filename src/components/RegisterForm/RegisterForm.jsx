@@ -4,6 +4,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import x from "../../assets/x.svg"
 import * as Yup from "yup"
 import { emailPattern} from "../../constans";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../redux/auth/operations";
 
 const UserShema = Yup.object().shape(
     {
@@ -17,7 +19,7 @@ const UserShema = Yup.object().shape(
         .max(50, "Too Long!")
         .required("Enter your email"),
         password:Yup.string()
-        .min(3, "Password should be at least 8 characters!")
+        .min(8, "Password should be at least 8 characters!")
         .max(50, "Password should be max 64 characters!")
         .required("Enter your password"),
     }
@@ -26,9 +28,26 @@ const UserShema = Yup.object().shape(
 
 export default function RegisterForm() {
      const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const initialValues={
+        name: "",
+        email: "",
+        password: "",
+    }
+
+    const handleSubmit = async  (values, action) =>{
+        // const {name, email, password } = values;
+        dispatch(registerUser(values))
+        // if (registerUser.fulfilled.match(result)) {
+        //     navigate("/login");
+        //   }
+        action.resetForm()
+        navigate(-1); 
+    }
     
         const closeHandler = () => {
-          navigate(-1); 
+            navigate(-1); 
         };
     return(
          <div className={css.container} >
@@ -40,12 +59,10 @@ export default function RegisterForm() {
                         <h2 className={css.title}>Registration</h2>
                         <p className={css.description}>Thank you for your interest in our platform! In order to register, we need some information. Please provide us with the following information</p>
                     </div>
-                    <Formik initialValues={{
-                        name: "",
-                        email: "",
-                        password: "",
-                        }}
+                    <Formik
+                        initialValues={initialValues}
                         validationSchema={UserShema}
+                        onSubmit={handleSubmit}
                         >
                             {({errors, touched, values})=> (<Form className={css.form}>
                                 <Field

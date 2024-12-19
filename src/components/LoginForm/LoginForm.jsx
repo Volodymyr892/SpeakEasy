@@ -4,6 +4,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import x from "../../assets/x.svg"
 import * as Yup from "yup"
 import { emailPattern } from "../../constans";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../redux/auth/operations";
 
 const UserShema = Yup.object().shape(
     {
@@ -21,9 +23,21 @@ const UserShema = Yup.object().shape(
 
 export default function LoginForm() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const handleSubmit = (values, actions) => {
+        dispatch(loginUser(values));
+        actions.resetForm();
+        navigate(-1)
+    }
+
+    const initialValues={
+        email: "",
+        password: "",
+        }
 
     const closeHandler = () => {
-      navigate(-1)
+        navigate(-1)
     };
     return(
         <div className={css.container} >
@@ -35,11 +49,9 @@ export default function LoginForm() {
                 <h2 className={css.title}>Log In</h2>
                 <p className={css.description}>Welcome back! Please enter your credentials to access your account and continue your search for an teacher.</p>
             </div>
-            <Formik initialValues={{
-                email: "",
-                password: "",
-                }}
+            <Formik initialValues={initialValues}
                 validationSchema={UserShema}
+                onSubmit={handleSubmit}
                 >
                     {({errors, touched, values})=> (<Form className={css.form}>
                         <Field 
