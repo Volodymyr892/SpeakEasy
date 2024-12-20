@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from "redux-persist";
 import { authReduser } from "./auth/slice";
+import { teacherReduser } from "./teachers/slice";
 import storage from "redux-persist/lib/storage"
 
 
@@ -15,6 +16,7 @@ authReduser
 export const store = configureStore({
     reducer: {
         auth:  persisteAuthReducer,
+        teacher: teacherReduser,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

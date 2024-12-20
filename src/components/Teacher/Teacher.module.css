@@ -18,10 +18,23 @@ margin-bottom: 32px;
 width: 968px;
 }
 .itemContainer{
+    /* background-color: white; */
+    position: relative;
 display: flex;
 gap: 32px;
 /* width: 697px; */
 height: 26px;
+/* z-index: 1; */
+}
+.img{
+    width: 96px;
+    height: 96px;
+    border-radius: 100px;
+}
+.imgAva{
+    width: 44px;
+    height: 44px;
+    border-radius: 100px;
 }
 .imgCont{
 border: 3px solid #fbe9ba;

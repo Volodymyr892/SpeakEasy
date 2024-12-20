@@ -20,11 +20,8 @@ export default function App() {
 
   useEffect(()=>{
     const token = localStorage.getItem("token");
-    console.log("🚀 ~ useEffect ~ token:", token)
     const email = localStorage.getItem("email");
-    console.log("🚀 ~ useEffect ~ email:", email)
     const name = localStorage.getItem("name");
-    console.log("🚀 ~ useEffect ~ name:", name)
   if(token){ dispatch(refreshUser({ token, email, name }));}
   },[dispatch])
 
