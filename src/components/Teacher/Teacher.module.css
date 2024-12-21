@@ -60,7 +60,7 @@ text-align: center;
 }
 .itemOne{
     display: flex;
-    gap: 149px;
+    justify-content: space-between;
     margin-bottom: 32px;
 }
 

@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import css from "./Filters.module.css"
+import { useDispatch } from "react-redux";
+import { featchTeachers } from "../../redux/teachers/operations";
 
 export default function Filters() {
-    const [selectedLanguage, setSelectedLanguage] = useState('French');
-  const [selectedLevel, setSelectedLevel] = useState('A1 Beginner');
-  const [selectedPrice, setSelectedPrice] = useState(30);
+  const dispatch = useDispatch();
+
+    const [selectedLanguage, setSelectedLanguage] = useState('');
+  const [selectedLevel, setSelectedLevel] = useState('');
+  const [selectedPrice, setSelectedPrice] = useState('');
 
 
     const languages = ['French', 'English', 'German', 'Ukrainian', 'Polish'];
@@ -13,24 +17,28 @@ const levels = [
   { level: 'A2 Elementary', price: 20 },
   { level: 'B1 Intermediate', price: 30 },
   { level: 'B2 Upper-Intermediate', price: 40 },
+  { level: "C1 Advanced", price: 50 },
+  { level: "C2 Proficient", price: 40 },
+
 ];
-const prices = [10, 20, 30, 40];
+const prices = [10, 20,25, 28, 30, 40];
 
-const handleLanguageChange = (e) => setSelectedLanguage(e.target.value);
-
-const handleLevelChange = (e) => {
-const level = levels.find((lvl) => lvl.level === e.target.value);
-setSelectedLevel(level.level);
-setSelectedPrice(level.price);
-};
-const handlePriceChange = (e) => setSelectedPrice(Number(e.target.value));
+useEffect(() => {
+  dispatch(
+    featchTeachers({
+      language: selectedLanguage || null, // Параметр відправляється лише якщо він обраний
+      level: selectedLevel || null,
+      price: selectedPrice ? Number(selectedPrice) : null,
+    })
+  );
+}, [selectedLanguage, selectedLevel, selectedPrice, dispatch]);
 
   return (
     
       <div className={css.container}>
         <div>
           <label className={css.title}>Languages</label>
-          <select className={css.select}  value={selectedLanguage} onChange={handleLanguageChange}>
+          <select className={css.select}  value={selectedLanguage} onChange={(e) => setSelectedLanguage(e.target.value)}>
             {languages.map((lang) => (
               <option className={css.option} key={lang} value={lang}>
                 {lang}
@@ -40,7 +48,7 @@ const handlePriceChange = (e) => setSelectedPrice(Number(e.target.value));
         </div>
         <div>
           <label className={css.title}>Level of knowledge</label>
-          <select className={css.select} value={selectedLevel} onChange={handleLevelChange}>
+          <select className={css.select} value={selectedLevel} onChange={(e) => setSelectedLevel(e.target.value)}>
             {levels.map((lvl) => (
               <option className={css.option} key={lvl.level} value={lvl.level}>
                 {lvl.level}
@@ -50,7 +58,7 @@ const handlePriceChange = (e) => setSelectedPrice(Number(e.target.value));
         </div>
         <div>
         <label  className={css.title}>Price</label>
-          <select className={css.select} value={selectedPrice} onChange={handlePriceChange}>
+          <select className={css.select} value={selectedPrice} onChange={(e) => setSelectedPrice(e.target.value)}>
             {prices.map((price) => (
               <option className={css.option} key={price} value={price}>
                 {price} $
@@ -59,6 +67,5 @@ const handlePriceChange = (e) => setSelectedPrice(Number(e.target.value));
           </select>
         </div>
       </div>
-  );
-    
+  );   
 }

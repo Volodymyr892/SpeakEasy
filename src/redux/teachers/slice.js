@@ -9,11 +9,7 @@ const teacher = createSlice({
         error: null,
         page: 1,
     },
-    reducers: {
-        incrementPage(state) {
-          state.page += 1; 
-        },
-    },
+
     extraReducers:  builder =>{
         builder
         .addCase(featchTeachers.pending, (state)=>{
@@ -22,7 +18,7 @@ const teacher = createSlice({
         })
         .addCase(featchTeachers.fulfilled, (state,action)=>{
             state.isLoading = false;
-            state.data = [...state.data, ...action.payload];
+            state.data = action.payload;
         })
         .addCase(featchTeachers.rejected, (state, action)=>{
             state.isLoading = false;

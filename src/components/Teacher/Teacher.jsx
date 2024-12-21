@@ -74,7 +74,7 @@ export default function Teacher({teacher}){
                             {teacher.reviews.map(review => 
                            (<div key={review.comment}> 
                                 <li className={css.itemReviews}>
-                                    <img className={css} src={ava} alt="Frank" />
+                                    <img className={css.imgAva} src={ava} alt="Frank" />
                                         <div>
                                             <p className={css.speaks}>{review.reviewer_name}</p>
                                             <div className={css.itemReviewsStar}>
