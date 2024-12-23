@@ -1,28 +1,28 @@
 .navigation {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    }
-    .nav{
-        width: 661px;
-        height: 28px;
-        display: flex;
-        justify-content: space-between;
-        background-color:  white;
-    }
-    .home{
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 1.5;
-        text-align: center;
-        color: #101828;
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-      .home:hover{
-        color: #f4c550;
-      }
-      .active{
-        color:  #f4c550; 
-      }
+display: flex;
+gap: 10px;
+justify-content: center;
+align-items: center;
+}
+.nav{
+width: 661px;
+height: 28px;
+display: flex;
+justify-content: space-between;
+background-color:  white;
+}
+.home{
+font-weight: 500;
+font-size: 16px;
+line-height: 1.5;
+text-align: center;
+color: #101828;
+text-decoration: none;
+transition: color 0.3s ease;
+}
+.home:hover{
+color: #f4c550;
+}
+.active{
+color:  #f4c550; 
+}

@@ -1,85 +1,77 @@
 import css from "./ModalBook.module.css"
 import x from "../../assets/x.svg"
-export default function ModalBook({onClose}) {
+import { useState } from "react";
+export default function ModalBook({onClose, foto}) {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        reason: "",
+        teacher: `${foto.name} ${foto.surname}`
+        });
+
+        //**-----Масив для рядіо кнопок */
+        const reason = ["career and business", " Lesson for kids", "Living abroad", "Exams and coursework", "Culture, travel or hobby"]
+    
+        const handleInputChange = (e) => {
+            const { name, value } = e.target;
+            setFormData((prev) => ({ ...prev, [name]: value }));
+        };
+    
+        const handleReasonChange = (e) => {
+            setFormData((prev) => ({ ...prev, reason: e.target.value }));
+        };
+
+        //**-----відправлення форми про урок--- */
+        const handleSubmit = (e) => {
+            e.preventDefault(); 
+            localStorage.setItem("modalFormData", JSON.stringify(formData)); 
+            onClose(); 
+        };
+
     return(
         <div className={css.container} >
         <div className={css.modal}>
         <button className={css.closeButton} onClick={onClose}>
-          <img src={x} alt="x" />
+        <img src={x} alt="x" />
         </button>
-           <div className={css.containerTitle}>
+            <div className={css.containerTitle}>
                 <h2 className={css.title}>Book trial lesson</h2>
                 <p className={css.description}>Our experienced tutor will assess your current language level, discuss your learning goals, and tailor the lesson to your specific needs.</p>
-           </div>
+            </div>
             <div className={css.containerTeacher}>
-                    {/* <p>photo</p> */}
+                <img className={css.img}  src={foto.avatar_url} alt="x" />
                     <div>
                         <p className={css.teacher}>Your teacher</p>
-                        <p className={css.name}>Jane Smith</p>
+                        <p className={css.name}>{foto.name} {foto.surname}</p>
                     </div>
             </div>
             <h3 className={css.question}>
             What is your main reason for learning English?
             </h3>
-                      <div className={css.radioContainer}>
-                           <label className={css.radioLabel}>
+                    <div className={css.radioContainer}>
+                        {reason.map((reason) => (
+                            <label className={css.radioLabel} key={reason}>
                                 <input
                                 className={css.radioInput}
-                                    type="radio"
-                                    name="duration"
-                                    value="career"
-                                    
+                                type="radio"
+                                name="reason"
+                                value={reason}
+                                checked={formData.reason === reason}
+                                onChange={handleReasonChange}
                                 />
-                                Career and business
+                                {reason.charAt(0).toUpperCase() + reason.slice(1).replace(/_/g, " ")}
                             </label>
-                            <label className={css.radioLabel}>
-                                <input
-                                className={css.radioInput}
-                                    type="radio"
-                                    name="duration"
-                                    value="kids"
-                                    
-                                />
-                               Lesson for kids
-                            </label>
-                            <label className={css.radioLabel}>
-                                <input
-                                className={css.radioInput}
-                                    type="radio"
-                                    name="duration"
-                                    value="abroad"
-                                    
-                                />
-                               Living abroad
-                            </label>
-                            <label className={css.radioLabel}>
-                                <input
-                                className={css.radioInput}
-                                    type="radio"
-                                    name="duration"
-                                    value="exams"
-                                    
-                                />
-                               Exams and coursework
-                            </label>
-                            <label className={css.radioLabel}>
-                                <input
-                                 className={css.radioInput}
-                                    type="radio"
-                                    name="duration"
-                                    value="culture"
-                                    
-                                />
-                               Culture, travel or hobby
-                            </label>
-                      </div>
-            <form>
+                            ))}
+                        </div>
+            <form onSubmit={handleSubmit}>
                 <input 
                     className={css.input} 
                     type="text" 
                     name="name"
-                    placeholder="Full name*" 
-                    
+                    placeholder="Full name" 
+                    value={formData.name}
+                    onChange={handleInputChange}
                     required
                 />
                 <input 
@@ -87,13 +79,17 @@ export default function ModalBook({onClose}) {
                     type="email" 
                     name="email"
                     placeholder="Email*" 
+                    value={formData.email}
+                    onChange={handleInputChange}
                     required
                 />
-                 <input 
+                <input 
                     className={css.input} 
                     type="number" 
                     name="phone"
                     placeholder="Number" 
+                    value={formData.phone}
+                    onChange={handleInputChange}
                     required
                 />
                 <button className={css.button} type="submit">Book</button>

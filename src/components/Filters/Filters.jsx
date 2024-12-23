@@ -3,39 +3,49 @@ import css from "./Filters.module.css"
 import { useDispatch } from "react-redux";
 import { featchTeachers } from "../../redux/teachers/operations";
 
-export default function Filters() {
+export default function Filters({selectedLevel, setSelectedLevel}) {
   const dispatch = useDispatch();
 
-    const [selectedLanguage, setSelectedLanguage] = useState('');
-  const [selectedLevel, setSelectedLevel] = useState('');
+  const [selectedLanguage, setSelectedLanguage] = useState('');
   const [selectedPrice, setSelectedPrice] = useState('');
 
+      //**-------масив для вибору мови 
 
-    const languages = ['French', 'English', 'German', 'Ukrainian', 'Polish'];
-const levels = [
-  { level: 'A1 Beginner', price: 30 },
-  { level: 'A2 Elementary', price: 20 },
-  { level: 'B1 Intermediate', price: 30 },
-  { level: 'B2 Upper-Intermediate', price: 40 },
-  { level: "C1 Advanced", price: 50 },
-  { level: "C2 Proficient", price: 40 },
+      const languages = ['French', 'English', 'German', 'Ukrainian', 'Polish'];
 
-];
-const prices = [10, 20,25, 28, 30, 40];
+      //**-------масив для вибору рівня мови 
+      const levels = [
+        { level: 'A1 Beginner'},
+        { level: 'A2 Elementary'},
+        { level: 'B1 Intermediate' },
+        { level: 'B2 Upper-Intermediate'},
+        { level: "C1 Advanced"},
+        { level: "C2 Proficient" },
+      ];
 
-useEffect(() => {
-  dispatch(
-    featchTeachers({
-      language: selectedLanguage || null, // Параметр відправляється лише якщо він обраний
-      level: selectedLevel || null,
-      price: selectedPrice ? Number(selectedPrice) : null,
-    })
-  );
-}, [selectedLanguage, selectedLevel, selectedPrice, dispatch]);
+      //?-------генератор чисел для виболру ціни
+      const generatePrices = (min, max, step) => {
+        const prices = [];
+        for (let price = min; price <= max; price += step) {
+          prices.push(price);
+        }
+        return prices;
+      };
+      const prices = generatePrices(10, 40, 1);
+
+      useEffect(() => {
+        dispatch(
+          featchTeachers({
+            language: selectedLanguage || null, //* Параметр відправляється лише якщо він обраний
+            level: selectedLevel || null,
+            price: selectedPrice ? Number(selectedPrice) : null,
+          })
+        );
+      }, [selectedLanguage, selectedLevel, selectedPrice, dispatch]);
 
   return (
     
-      <div className={css.container}>
+      <section className={css.container}>
         <div>
           <label className={css.title}>Languages</label>
           <select className={css.select}  value={selectedLanguage} onChange={(e) => setSelectedLanguage(e.target.value)}>
@@ -66,6 +76,6 @@ useEffect(() => {
             ))}
           </select>
         </div>
-      </div>
+      </section>
   );   
 }

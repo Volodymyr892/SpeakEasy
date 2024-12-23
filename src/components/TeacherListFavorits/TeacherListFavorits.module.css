@@ -1,10 +1,11 @@
 .button{
-cursor: pointer;
-border-radius: 12px;
+    cursor: pointer;
+    border-radius: 12px;
 padding: 16px 48px;
 min-width: 183px;
 height: 60px;
 background-color: #f4c550;
+/* font-family: var(--font-family); */
 font-weight: 700;
 font-size: 18px;
 line-height: 1.6;
@@ -15,8 +16,8 @@ margin-left: 483px;
 transition: all 0.3s ease;
 }
 .button:hover{
-background-color: #ffdc86;
+    background-color: #ffdc86;
 }
 .container{
-background-color: #f8f8f8;
+    background-color: #f8f8f8;
 }

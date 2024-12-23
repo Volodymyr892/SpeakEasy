@@ -1,14 +1,13 @@
 .header{
     display: flex;
-    justify-content: space-between; /* Розташування елементів по горизонталі */
-    align-items: center; /* Вирівнювання по вертикалі */
+    justify-content: space-between; 
+    align-items: center; 
     width: 100%; 
-    max-width: 1440px; /* Максимальна ширина контейнера */
-    /* height: 88px;  */
+    max-width: 1440px; 
     padding: 0 128px; 
     color: white; 
-    box-sizing: border-box; /* Врахування паддингів та бордерів у ширину/висоту */
-    border-radius: 0 0 10px 10px; /* Закруглення нижніх кутів */
-    background-color: white; /* Фон хедера */
+    box-sizing: border-box; 
+    border-radius: 0 0 10px 10px; 
+    background-color: white; 
     margin: 20px auto 20px;
 }

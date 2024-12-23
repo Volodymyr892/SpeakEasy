@@ -1,17 +1,17 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* Встановлює єдину модель розрахунку розмірів */
+margin: 0;
+padding: 0;
+box-sizing: border-box; 
 }
 ul {
-    list-style: none; /* Прибирає маркери */
-    padding: 0;       /* Прибирає відступи списку */
-    margin: 0;        /* Прибирає поля списку */
+list-style: none; 
+padding: 0;       
+margin: 0;        
 }
 
 .button{
-    cursor: pointer;
-    border-radius: 12px;
+cursor: pointer;
+border-radius: 12px;
 padding: 16px 88px;
 width: 267px;
 height: 60px;
@@ -25,17 +25,17 @@ border: none;
 transition: all 0.3s ease;
 }
 .button:hover{
-    background-color: #ffdc86;
+background-color: #ffdc86;
 }
 .item{
-    border-radius: 30px;
+border-radius: 30px;
 width: 720px;
 height: 530px;
 background-color: #f8f8f8;
 padding: 98px 108px 98px 64px;
 }
 .title{
-    /* font-family: var(--font-family); */
+
 font-weight: 500;
 font-weight: bold;
 font-size: 48px;
@@ -45,14 +45,14 @@ color: #121417;
 margin-bottom: 32px;
 }
 .span{
-    font-style: italic;
+font-style: italic;
 font-weight: 400;
 background-color: #fbe9ba;
-border-radius: 5px; /* Закруглені кути */
+border-radius: 5px;
 padding: 0 4px;
 }
 .itemSvg{
-    border-radius: 30px;
+border-radius: 30px;
 width: 568px;
 height: 530px;
 background-color: #fbe9ba;
@@ -61,19 +61,18 @@ position: relative;
 overflow: hidden;
 }
 .mac{  
-    position: absolute;
-    bottom: 0; 
-    left: 50%; 
-    transform: translateX(-65%); 
-    width: 300px;
-    margin: 0;
+position: absolute;
+bottom: 0; 
+left: 50%; 
+transform: translateX(-65%); 
+width: 300px;
+margin: 0;
 }
 .container{
-    display: flex;
-    gap: 19px;
+display: flex;
+gap: 19px;
 }
 .description{
-    font-family: var(--font-family);
 font-weight: 400;
 font-size: 16px;
 line-height: 1.4;

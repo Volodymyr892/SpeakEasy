@@ -6,21 +6,43 @@ import ava from "../../assets/ava.png"
 import css from "./Teacher.module.css"
 import { useState } from "react"
 import ModalBook from "../ModalBook/ModalBook"
+import { addToFavorites } from "../../redux/favorites/slice"
+import { selectIsloggedIn } from "../../redux/auth/selectors"
+import LoginForm from "../LoginForm/LoginForm"
+import { useDispatch, useSelector } from "react-redux"
 
 
-export default function Teacher({teacher}){
+export default function Teacher({teacher,  selectedLevel}){
     const [isExpanded, setIsExpanded] = useState(false);
     const [isModalopen, setIsModalopen] = useState(false);
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
+    const dispatch = useDispatch();
+    const isLoggedIn = useSelector(selectIsloggedIn);
 
     
-    
+    //**-----Вдкриття та закритя модалки пробного заннятя --- */
     const openModal = ()=> setIsModalopen(true);
     const closeModal = ()=>setIsModalopen(false);
+
+    //**----- Відкриває модалку логіну якщо не заресєтрований користувач хоче додати у вибарні викладача --- */ 
+    const openLoginModal = () => setIsLoginModalOpen(true);  
+    const closeLoginModal = () => setIsLoginModalOpen(false);
     
-    const handleToggle = () => {
-        setIsExpanded((prev) => !prev);
-    };
+    //**-----Відкриття додаткової ініормації по викладачу--- */
+    const handleToggle = () => setIsExpanded((prev) => !prev);
+
+    //**-----Масив рівнів зання мови викладача--- */
     const levels = teacher.levels;
+
+    //**-----Додаваня викладача в улюблені--- */ 
+    const handleFavoriteClick = () => {
+        if (!isLoggedIn) {
+            openLoginModal(); //? Відкрити модалку якщо користувач не залогінений
+        } else {
+          dispatch(addToFavorites(teacher)); //? Додати викладача в улюблені
+        }
+    };
 
     return(
         <div className={css.container}>
@@ -48,7 +70,7 @@ export default function Teacher({teacher}){
                         </li>
                     </div>
                     <li>
-                        <button className={css.buttonHead} type="submit"><img   src={head} alt="head" /></button>
+                        <button className={css.buttonHead} type="submit" onClick={handleFavoriteClick}><img   src={head} alt="head" /></button>
                     </li>
                 </ul>
             </li>
@@ -63,7 +85,10 @@ export default function Teacher({teacher}){
                     </button>
                     <ul className={css.laveList}>
                         {levels.map((level) => (
-                        <li className={css.lavelItem} key={level}>
+                        <li    className={`${
+                            selectedLevel === level ? 
+                            css.selected : css.levelItem
+                            }`} key={level}>
                             <p className={css.lavelName}>{level}</p>
                         </li>
                     ))}
@@ -72,7 +97,7 @@ export default function Teacher({teacher}){
                         <p className={css.fullDescription}>{teacher.experience}</p>
                         <ul>
                             {teacher.reviews.map(review => 
-                           (<div key={review.comment}> 
+                            (<div key={review.comment}> 
                                 <li className={css.itemReviews}>
                                     <img className={css.imgAva} src={ava} alt="Frank" />
                                         <div>
@@ -86,11 +111,15 @@ export default function Teacher({teacher}){
                                 <li>
                                     <p className={css.comment}>{review.comment}</p>
                                 </li>
-                           </div>))}
+                            </div>))}
                         </ul>
                     <ul className={css.laveList}>
                         {levels.map((level) => (
-                            <li className={css.lavelItem} key={level}>
+                            <li  key={level}
+                            className={`${css.levelItem} ${
+                                selectedLevel === level ? css.selected:""
+                                }`}
+                            >
                                 <p className={css.lavelName}>{level}</p>
                             </li>
                         ))}
@@ -101,7 +130,8 @@ export default function Teacher({teacher}){
                 </>)}
             </li>
         </ul>
-        {isModalopen && <ModalBook onClose={closeModal} />}
+        {isModalopen && <ModalBook foto={teacher} onClose={closeModal} />}
+        {isLoginModalOpen && <LoginForm onClose={closeLoginModal}/>}
         </div>
     )
 }

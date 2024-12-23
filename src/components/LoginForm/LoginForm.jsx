@@ -25,6 +25,7 @@ export default function LoginForm() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    //**------відправленя форми логіну---*/
     const handleSubmit = (values, actions) => {
         dispatch(loginUser(values));
         actions.resetForm();
@@ -36,6 +37,7 @@ export default function LoginForm() {
         password: "",
         }
 
+    //**-----поверненя на минулу сторінку---*/
     const closeHandler = () => {
         navigate(-1)
     };

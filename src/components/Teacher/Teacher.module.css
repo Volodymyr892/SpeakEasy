@@ -5,7 +5,7 @@ padding: 0;
 }
 /* ?--------------Container-------------------------- */
 .container{
-    box-sizing: border-box;
+box-sizing: border-box;
 display: flex;
 gap: 48px;
 border-radius: 24px;
@@ -18,23 +18,20 @@ margin-bottom: 32px;
 width: 968px;
 }
 .itemContainer{
-    /* background-color: white; */
-    position: relative;
+position: relative;
 display: flex;
 gap: 32px;
-/* width: 697px; */
 height: 26px;
-/* z-index: 1; */
 }
 .img{
-    width: 96px;
-    height: 96px;
-    border-radius: 100px;
+width: 96px;
+height: 96px;
+border-radius: 100px;
 }
 .imgAva{
-    width: 44px;
-    height: 44px;
-    border-radius: 100px;
+width: 44px;
+height: 44px;
+border-radius: 100px;
 }
 .imgCont{
 border: 3px solid #fbe9ba;
@@ -59,9 +56,9 @@ justify-content: center;
 text-align: center;
 }
 .itemOne{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 32px;
+display: flex;
+justify-content: space-between;
+margin-bottom: 32px;
 }
 
 .pTop{
@@ -73,14 +70,14 @@ color: #121417;
 margin: 0;
 }
 .nameTecher{
-    margin: 0;
+margin: 0;
 font-weight: 500;
 font-size: 16px;
 line-height: 150%;
 color: #8a8a89;
 }
 .name{
-    margin: 8px 0 0 0;
+margin: 8px 0 0 0;
 font-weight: 500;
 font-weight: bold;
 font-size: 24px;
@@ -151,8 +148,13 @@ gap: 8px;
 text-align: center;
 margin-top: 32px;
 }
-.lavelItem{
+.levelItem{
 border: 1px solid rgba(18, 20, 23, 0.2);
+border-radius: 35px;
+padding: 8px 12px;
+}
+.selected{
+background-color: #f4c550;
 border-radius: 35px;
 padding: 8px 12px;
 }
@@ -165,12 +167,14 @@ margin: 0;
 /* ?---------------Button-------------------------------------- */
 .buttonHead{
 border: none;
+
 background-color: #ffff;
 padding: 0;
 cursor: pointer;
 }
+
 .buttonRead{
-    font-family: var(--font-family);
+font-family: var(--font-family);
 font-weight: 500;
 font-size: 16px;
 line-height: 150%;

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { database, get, ref } from "../../../firebase";
-import { equalTo, orderByChild, query } from "firebase/database";
+// import { equalTo, orderByChild, query } from "firebase/database";
 
 export const featchTeachers  = createAsyncThunk(
     "teashets/featchTeachers",
@@ -20,12 +20,8 @@ export const featchTeachers  = createAsyncThunk(
             //   }
 
             const response = await get(teachersRef);
-            console.log("Response:", response);
-            console.log("Чи існує відповідь:", response.exists());
-            console.log("Дані відповіді:", response.val());
             if (response.exists()) {
                 let data = Object.values(response.val());
-                console.log("🚀 ~ async ~ data:", data)
 
                 // Фільтрування даних на клієнті
                 if (language) {
@@ -37,13 +33,8 @@ export const featchTeachers  = createAsyncThunk(
                 if (price) {
                     data = data.filter((teacher) => teacher.price_per_hour === price);
                 }
-                console.log("🚀 ~ async ~ level:", level)
-                console.log("🚀 ~ async ~ language:", language)
-                    console.log("Фільтр по ціні:", price);
-                    console.log("Дані до фільтрування:", data);
                 return data;
               } else {
-                console.log("Дані не знайдені.");
                 return [];
               }
         } catch (error) {

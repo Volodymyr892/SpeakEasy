@@ -27,7 +27,7 @@ const UserShema = Yup.object().shape(
 
 
 export default function RegisterForm() {
-     const navigate = useNavigate();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const initialValues={
@@ -36,12 +36,9 @@ export default function RegisterForm() {
         password: "",
     }
 
+    //**-----відправлення форми реєстрації--- */
     const handleSubmit = async  (values, action) =>{
-        // const {name, email, password } = values;
         dispatch(registerUser(values))
-        // if (registerUser.fulfilled.match(result)) {
-        //     navigate("/login");
-        //   }
         action.resetForm()
         navigate(-1); 
     }
@@ -50,7 +47,7 @@ export default function RegisterForm() {
             navigate(-1); 
         };
     return(
-         <div className={css.container} >
+        <div className={css.container} >
                     <div className={css.modal}>
                     <button className={css.closeButton} onClick={closeHandler}>
                         <img src={x} alt="x" />

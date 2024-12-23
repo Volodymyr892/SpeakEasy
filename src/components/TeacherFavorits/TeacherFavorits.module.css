@@ -1,0 +1,208 @@
+ul, ol {
+    list-style: none; 
+    margin: 0; 
+    padding: 0; 
+    }
+    /* ?--------------Container-------------------------- */
+    .container{
+        box-sizing: border-box;
+    display: flex;
+    gap: 48px;
+    border-radius: 24px;
+    padding: 24px;
+    width: 1184px;
+    background-color: #ffff;
+    margin-bottom: 32px;
+    }
+    .contaiterList{
+    width: 968px;
+    }
+    .itemContainer{
+        /* background-color: white; */
+        position: relative;
+    display: flex;
+    gap: 32px;
+    /* width: 697px; */
+    height: 26px;
+    /* z-index: 1; */
+    }
+    .img{
+        width: 96px;
+        height: 96px;
+        border-radius: 100px;
+    }
+    .imgAva{
+        width: 44px;
+        height: 44px;
+        border-radius: 100px;
+    }
+    .imgCont{
+    border: 3px solid #fbe9ba;
+    border-radius: 100px;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    }
+    /* ?------------------------------------------------------------ */
+    
+    /* !------------------------------------------------------------ */
+    .list{
+    display: flex ;
+    gap: 96px;
+    }
+    .item{
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    text-align: center;
+    }
+    .itemOne{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 32px;
+    }
+    
+    .pTop{
+    font-weight: 500;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #121417;
+    margin: 0;
+    }
+    .nameTecher{
+        margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #8a8a89;
+    }
+    .name{
+        margin: 8px 0 0 0;
+    font-weight: 500;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 1;
+    color: #121417;
+    }
+    .imgIcon{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    }
+    .speaks{
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #8a8a89;
+    margin: 0;
+    }
+    .speaksSpan{
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: #121417;
+    }
+    .span{
+    color: #121417;
+    }
+    .dollar{
+        color: #38cd3e;
+    }
+    /* !------------------------------------------------- */
+    
+    /* ?---------------------Reviews--------------------- */
+    .fullDescription{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #121417;
+    margin: 0;
+    margin-top: 16px;
+    }
+    .itemReviews{
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    }
+    .itemReviewsStar{
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    text-align: center;
+    margin-top: 2px;
+    }
+    .imgIconStar{
+        padding-top: 2px;
+    }
+    .comment{
+    font-weight: 500;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #121417;
+    margin: 0;
+    margin-top: 16px;
+    }
+    .laveList{
+    display: flex;
+    gap: 8px;
+    text-align: center;
+    margin-top: 32px;
+    }
+    .levelItem{
+    border: 1px solid rgba(18, 20, 23, 0.2);
+    border-radius: 35px;
+    padding: 8px 12px;
+    }
+    /* .lavelItem */
+    .selected{
+        background-color: #f4c550;
+    border-radius: 35px;
+    padding: 8px 12px;
+    }
+    .lavelName{
+    margin: 0;
+    }
+    /* ?----------------------------------------------------------- */
+    
+    
+    /* ?---------------Button-------------------------------------- */
+    .buttonHead{
+    border: none;
+    background-color: #ffff;
+    padding: 0;
+    cursor: pointer;
+    }
+    .buttonRead{
+        font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: #121417;
+    border: none;
+    background-color: #ffff;
+    margin-top: 16px;
+    cursor: pointer;
+    }
+    .buttonBook{
+    border-radius: 12px;
+    padding: 16px 48px;
+    width: 232px;
+    height: 60px;
+    background-color: #f4c550;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #121417;
+    border: none;
+    margin-top: 32px;
+    cursor: pointer;
+    }
+    .buttonBook:hover{
+        background-color: #ffdc86;
+    }

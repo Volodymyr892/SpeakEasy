@@ -3,6 +3,7 @@ import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, R
 import { authReduser } from "./auth/slice";
 import { teacherReduser } from "./teachers/slice";
 import storage from "redux-persist/lib/storage"
+import { favoritesReduser } from "./favorites/slice";
 
 
 const persisteAuthReducer = persistReducer({
@@ -17,6 +18,7 @@ export const store = configureStore({
     reducer: {
         auth:  persisteAuthReducer,
         teacher: teacherReduser,
+        favorites: favoritesReduser,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
