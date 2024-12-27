@@ -1,6 +1,9 @@
 import css from "./ModalBook.module.css"
 import x from "../../assets/x.svg"
 import { useState } from "react";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
+
 export default function ModalBook({onClose, foto}) {
     const [formData, setFormData] = useState({
         name: "",
@@ -26,6 +29,12 @@ export default function ModalBook({onClose, foto}) {
         const handleSubmit = (e) => {
             e.preventDefault(); 
             localStorage.setItem("modalFormData", JSON.stringify(formData)); 
+            iziToast.success({
+                title: "Success",
+                message: "Book trial lesson completed successfully!",
+                position: 'topCenter',
+                timeout: 3000 
+            });
             onClose(); 
         };
 

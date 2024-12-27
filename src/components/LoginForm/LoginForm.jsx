@@ -6,6 +6,8 @@ import * as Yup from "yup"
 import { emailPattern } from "../../constans";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/auth/operations";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const UserShema = Yup.object().shape(
     {
@@ -28,6 +30,12 @@ export default function LoginForm() {
     //**------відправленя форми логіну---*/
     const handleSubmit = (values, actions) => {
         dispatch(loginUser(values));
+        iziToast.success({
+            title: "Success",
+            message: "Login completed successfully!",
+            position: 'topCenter',
+            timeout: 3000 
+        });
         actions.resetForm();
         navigate(-1)
     }

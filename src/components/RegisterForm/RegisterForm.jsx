@@ -6,6 +6,9 @@ import * as Yup from "yup"
 import { emailPattern} from "../../constans";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../redux/auth/operations";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
+
 
 const UserShema = Yup.object().shape(
     {
@@ -38,10 +41,16 @@ export default function RegisterForm() {
 
     //**-----відправлення форми реєстрації--- */
     const handleSubmit = async  (values, action) =>{
-        dispatch(registerUser(values))
-        action.resetForm()
-        navigate(-1); 
-    }
+         dispatch(registerUser(values));
+            iziToast.success({
+                title: "Success",
+                message: "Registration completed successfully!",
+                position: 'topCenter',
+                timeout: 3000 
+            });
+            action.resetForm();
+            navigate(-1);
+        }
     
         const closeHandler = () => {
             navigate(-1); 
