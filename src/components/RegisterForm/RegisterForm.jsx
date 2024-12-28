@@ -4,10 +4,11 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import x from "../../assets/x.svg"
 import * as Yup from "yup"
 import { emailPattern} from "../../constans";
-import { useDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
 import { registerUser } from "../../redux/auth/operations";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
+// import { selectIsloggedIn } from "../../redux/auth/selectors";
 
 
 const UserShema = Yup.object().shape(
@@ -32,6 +33,7 @@ const UserShema = Yup.object().shape(
 export default function RegisterForm() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    // const isLogedIn = useSelector (selectIsloggedIn);
 
     const initialValues={
         name: "",
@@ -41,15 +43,37 @@ export default function RegisterForm() {
 
     //**-----відправлення форми реєстрації--- */
     const handleSubmit = async  (values, action) =>{
-         dispatch(registerUser(values));
-            iziToast.success({
-                title: "Success",
-                message: "Registration completed successfully!",
+        try {
+            const resultAction = await dispatch(registerUser(values));
+            
+            if (registerUser.fulfilled.match(resultAction)) {
+                // Якщо реєстрація успішна
+                iziToast.success({
+                    title: "Success",
+                    message: "Registration completed successfully!",
+                    position: 'topCenter',
+                    timeout: 3000,
+                });
+                action.resetForm();
+                navigate(-1); // Повернення назад
+            } else {
+                // Якщо реєстрація неуспішна
+                const errorMessage = resultAction.payload || "Registration failed. User may already exist.";
+                iziToast.error({
+                    title: "Error",
+                    message: errorMessage,
+                    position: 'topCenter',
+                    timeout: 3000,
+                });
+            }
+        } catch (error) {
+            iziToast.error({
+                title: "Error",
+                message: "An unexpected error occurred. Please try again.",
                 position: 'topCenter',
-                timeout: 3000 
+                timeout: 3000,
             });
-            action.resetForm();
-            navigate(-1);
+        }
         }
     
         const closeHandler = () => {

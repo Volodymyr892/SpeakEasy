@@ -28,16 +28,45 @@ export default function LoginForm() {
     const dispatch = useDispatch();
 
     //**------відправленя форми логіну---*/
-    const handleSubmit = (values, actions) => {
-        dispatch(loginUser(values));
-        iziToast.success({
-            title: "Success",
-            message: "Login completed successfully!",
-            position: 'topCenter',
-            timeout: 3000 
-        });
-        actions.resetForm();
-        navigate(-1)
+    const handleSubmit = async (values, actions) => {
+        // dispatch(loginUser(values));
+        // iziToast.success({
+        //     title: "Success",
+        //     message: "Login completed successfully!",
+        //     position: 'topCenter',
+        //     timeout: 3000 
+        // });
+        // actions.resetForm();
+        // navigate(-1)
+        try {
+            const resultAction = await dispatch(loginUser(values));
+            
+            if (loginUser.fulfilled.match(resultAction)) {
+                iziToast.success({
+                    title: "Success",
+                    message: "Login completed successfully!",
+                    position: 'topCenter',
+                    timeout: 3000,
+                });
+                actions.resetForm();
+                navigate(-1); // Повернення назад
+            } else {
+                const errorMessage = resultAction.payload || "The email address is entered incorrectly.";
+                iziToast.error({
+                    title: "Error",
+                    message: errorMessage,
+                    position: 'topCenter',
+                    timeout: 3000,
+                });
+            }
+        } catch (error) {
+            iziToast.error({
+                title: "Error",
+                message: "An unexpected error occurred. Please try again.",
+                position: 'topCenter',
+                timeout: 3000,
+            });
+        }
     }
 
     const initialValues={
