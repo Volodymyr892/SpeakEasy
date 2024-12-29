@@ -18,7 +18,6 @@ export const registerUser = createAsyncThunk(
                 name: response.user.displayName,
             }
         } catch (error) {
-            console.error("Error during registration:", error);
             return thunkAPI.rejectWithValue(error.message);
         }
     }
