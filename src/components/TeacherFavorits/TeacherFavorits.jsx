@@ -7,7 +7,6 @@ import { useState } from "react";
 import css from "./TeacherFavorits.module.css"
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsloggedIn } from "../../redux/auth/selectors";
-// import LoginForm from "../LoginForm/LoginForm";
 import ModalBook from "../ModalBook/ModalBook";
 import { removeFromFavorites } from "../../redux/favorites/slice";
 
@@ -30,7 +29,7 @@ export default function TeacherFavorits({favorits,  selectedLevel}) {
         if (!isLoggedIn) {
             alert("Please log in to remove favorites");
         } else {
-          dispatch(removeFromFavorites(favorits.id)); // видалити
+          dispatch(removeFromFavorites(favorits.id)); 
       };
     }
   return (
@@ -85,7 +84,7 @@ export default function TeacherFavorits({favorits,  selectedLevel}) {
                             <p className={css.fullDescription}>{favorits.experience}</p>
                             <ul>
                                 {favorits.reviews.map(review => 
-                               (<div key={review.comment}> 
+                                (<div key={review.comment}> 
                                     <li className={css.itemReviews}>
                                         <img className={css.imgAva} src={ava} alt="Frank" />
                                             <div>
@@ -108,7 +107,6 @@ export default function TeacherFavorits({favorits,  selectedLevel}) {
                                     selectedLevel === level ? css.selected:""
                                     }`}
                                 >
-                                   
                                     <p className={css.lavelName}>{level}</p>
                                 </li>
                             ))}

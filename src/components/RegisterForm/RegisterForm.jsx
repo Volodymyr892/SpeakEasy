@@ -8,8 +8,7 @@ import { useDispatch} from "react-redux";
 import { registerUser } from "../../redux/auth/operations";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
-// import { selectIsloggedIn } from "../../redux/auth/selectors";
-
+import { useEffect } from "react";
 
 const UserShema = Yup.object().shape(
     {
@@ -33,7 +32,12 @@ const UserShema = Yup.object().shape(
 export default function RegisterForm() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    // const isLogedIn = useSelector (selectIsloggedIn);
+    useEffect(() => {
+        document.body.style.overflow = "hidden";
+        return () => {
+          document.body.style.overflow = "";
+        };
+      }, []);
 
     const initialValues={
         name: "",
@@ -47,7 +51,6 @@ export default function RegisterForm() {
             const resultAction = await dispatch(registerUser(values));
             
             if (registerUser.fulfilled.match(resultAction)) {
-                // Якщо реєстрація успішна
                 iziToast.success({
                     title: "Success",
                     message: "Registration completed successfully!",
@@ -55,9 +58,8 @@ export default function RegisterForm() {
                     timeout: 3000,
                 });
                 action.resetForm();
-                navigate(-1); // Повернення назад
+                navigate(-1); 
             } else {
-                // Якщо реєстрація неуспішна
                 const errorMessage = resultAction.payload || "Registration failed. User may already exist.";
                 iziToast.error({
                     title: "Error",

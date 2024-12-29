@@ -5,6 +5,15 @@ import { teacherReduser } from "./teachers/slice";
 import storage from "redux-persist/lib/storage"
 import { favoritesReduser } from "./favorites/slice";
 
+const persistFavoritesReducer = persistReducer(
+    {
+      key: "favorites",
+      storage,
+      whitelist: ["items"],
+    },
+    favoritesReduser
+  );
+
 
 const persisteAuthReducer = persistReducer({
     key: "auth-token",
@@ -18,12 +27,13 @@ export const store = configureStore({
     reducer: {
         auth:  persisteAuthReducer,
         teacher: teacherReduser,
-        favorites: favoritesReduser,
+        favorites: persistFavoritesReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+                ignoredPaths: ["favorites"],
             },
     }),
 })

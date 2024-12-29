@@ -20,10 +20,8 @@ const authSlice = createSlice({
         })
         .addCase(registerUser.fulfilled, (state, action)=>{
             state.user = action.payload.email;
-            console.log("🚀 ~ .addCase ~ state.user:", state.user)
             state.name =  action.payload.name;
             state.token = action.payload.uid || null;
-            console.log("🚀 ~ .addCase ~ state.token:", state.token)
             state.isLoggedIn = true;
             state.error = null;
 
@@ -44,8 +42,8 @@ const authSlice = createSlice({
         })
         .addCase(loginUser.fulfilled, (state, action)=>{
             state.user = action.payload.email;
-            state.name= action.payload.name; // Правильна структура
-            state.token = action.payload.uid || null; // Токен можна додати пізніше
+            state.name= action.payload.name; 
+            state.token = action.payload.uid || null; 
             state.isLoggedIn = true;
             state.error = null;
 

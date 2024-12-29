@@ -1,6 +1,6 @@
 import css from "./ModalBook.module.css"
 import x from "../../assets/x.svg"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
@@ -12,6 +12,12 @@ export default function ModalBook({onClose, foto}) {
         reason: "",
         teacher: `${foto.name} ${foto.surname}`
         });
+        useEffect(() => {
+            document.body.style.overflow = "hidden";
+            return () => {
+              document.body.style.overflow = "";
+            };
+          }, []);
 
         //**-----Масив для рядіо кнопок */
         const reason = ["career and business", " Lesson for kids", "Living abroad", "Exams and coursework", "Culture, travel or hobby"]

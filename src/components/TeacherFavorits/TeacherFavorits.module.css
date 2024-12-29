@@ -18,13 +18,10 @@ ul, ol {
     width: 968px;
     }
     .itemContainer{
-        /* background-color: white; */
         position: relative;
     display: flex;
     gap: 32px;
-    /* width: 697px; */
     height: 26px;
-    /* z-index: 1; */
     }
     .img{
         width: 96px;

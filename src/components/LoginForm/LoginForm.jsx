@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/auth/operations";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
+import { useEffect } from "react";
 
 const UserShema = Yup.object().shape(
     {
@@ -26,18 +27,16 @@ const UserShema = Yup.object().shape(
 export default function LoginForm() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    
+    useEffect(() => {
+        document.body.style.overflow = "hidden";
+        return () => {
+          document.body.style.overflow = "";
+        };
+      }, []);
 
     //**------відправленя форми логіну---*/
     const handleSubmit = async (values, actions) => {
-        // dispatch(loginUser(values));
-        // iziToast.success({
-        //     title: "Success",
-        //     message: "Login completed successfully!",
-        //     position: 'topCenter',
-        //     timeout: 3000 
-        // });
-        // actions.resetForm();
-        // navigate(-1)
         try {
             const resultAction = await dispatch(loginUser(values));
             

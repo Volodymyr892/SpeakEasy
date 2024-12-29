@@ -1,13 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-import {auth} from "../../../firebase"
+import {auth} from "../../../env/firebase"
 
 export const registerUser = createAsyncThunk(
     "auth/register",
     async({name, email, password}, thunkAPI)=>{
         try {
             const response = await createUserWithEmailAndPassword(auth, email, password);
-            console.log("🚀 ~ async ~ response:", response.user)
 
             await updateProfile(response.user, {
                 displayName: name,
@@ -43,7 +42,6 @@ export const loginUser = createAsyncThunk(
 export const refreshUser = createAsyncThunk(
     "auth/refreshUser",
     async({ token, email, name }, thunkAPI)=>{
-        // const token = localStorage.getItem("token")
         if(!token || !email || !name){
             return thunkAPI.rejectWithValue("No token found");
         }

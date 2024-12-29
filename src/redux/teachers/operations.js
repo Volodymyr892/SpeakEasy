@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { database, get, ref } from "../../../firebase";
+import { database, get, ref } from "../../../env/firebase";
 // import { equalTo, orderByChild, query } from "firebase/database";
 
 export const featchTeachers  = createAsyncThunk(
@@ -8,22 +8,11 @@ export const featchTeachers  = createAsyncThunk(
         try {
 
             const teachersRef = ref(database,  "/");
-            // let firebaseQuery = query(teachersRef);
-            // if (language) {
-            //     firebaseQuery = query(firebaseQuery, orderByChild("languages"), equalTo(language));
-            //   }
-            //   if (level) {
-            //     firebaseQuery = query(firebaseQuery, orderByChild("levels"), equalTo(level));
-            //   }
-            //   if (price) {
-            //     firebaseQuery = query(firebaseQuery, orderByChild("price_per_hour"), equalTo(price));
-            //   }
 
             const response = await get(teachersRef);
             if (response.exists()) {
                 let data = Object.values(response.val());
 
-                // Фільтрування даних на клієнті
                 if (language) {
                   data = data.filter((teacher) => teacher.languages?.includes(language));
                 }

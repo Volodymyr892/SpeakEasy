@@ -6,10 +6,12 @@ import ava from "../../assets/ava.png"
 import css from "./Teacher.module.css"
 import { useState } from "react"
 import ModalBook from "../ModalBook/ModalBook"
-import { addToFavorites } from "../../redux/favorites/slice"
+import { addToFavorites, removeFromFavorites } from "../../redux/favorites/slice"
 import { selectIsloggedIn } from "../../redux/auth/selectors"
 import LoginForm from "../LoginForm/LoginForm"
 import { useDispatch, useSelector } from "react-redux"
+import { selectFavorites } from "../../redux/favorites/selectors"
+import heartHover from "../../assets/heartHover.svg"
 
 
 export default function Teacher({teacher,  selectedLevel}){
@@ -19,6 +21,11 @@ export default function Teacher({teacher,  selectedLevel}){
 
     const dispatch = useDispatch();
     const isLoggedIn = useSelector(selectIsloggedIn);
+    const favorites = useSelector(selectFavorites);
+
+    const favoritesList = Array.isArray(favorites) ? favorites : (favorites.items || []);
+
+    const isFavorite =  favoritesList.some((item) => item.id === teacher.id);
 
     
     //**-----Вдкриття та закритя модалки пробного заннятя --- */
@@ -39,9 +46,11 @@ export default function Teacher({teacher,  selectedLevel}){
     const handleFavoriteClick = () => {
         if (!isLoggedIn) {
             openLoginModal(); //? Відкрити модалку якщо користувач не залогінений
-        } else {
-          dispatch(addToFavorites(teacher)); //? Додати викладача в улюблені
-        }
+        } else if (isFavorite) {
+            dispatch(removeFromFavorites(teacher.id)); 
+          } else {
+            dispatch(addToFavorites(teacher));
+          }
     };
 
     return(
@@ -70,7 +79,7 @@ export default function Teacher({teacher,  selectedLevel}){
                         </li>
                     </div>
                     <li>
-                        <button className={css.buttonHead} type="submit" onClick={handleFavoriteClick}><img   src={head} alt="head" /></button>
+                        <button className={css.buttonHead} type="submit" onClick={handleFavoriteClick}><img   src={isFavorite ? heartHover : head} alt="head" /></button>
                     </li>
                 </ul>
             </li>
