@@ -13,12 +13,11 @@ const persistFavoritesReducer = persistReducer(
     },
     favoritesReduser
   );
-
   const persistTeacherReducer = persistReducer(
     {
       key: "teachers",
       storage,
-      whitelist: ["visibleCount"],
+      whitelist: ["visibleCount"], // Зберігаємо тільки visibleCount
     },
     teacherReduser
   );
