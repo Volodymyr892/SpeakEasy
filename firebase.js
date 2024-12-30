@@ -21,7 +21,6 @@ const firebaseConfig = {
 console.log('Firebase Config:', firebaseConfig);
 
 const app = initializeApp(firebaseConfig);
-console.log('Firebase App Initialized:', app);
 const auth = getAuth(app);
 const database = getDatabase(app);
 // const analytics = getAnalytics(app);
