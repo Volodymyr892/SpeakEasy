@@ -12,19 +12,10 @@ export default function TeachersList({ selectedLevel}) {
     const teachers = useSelector(selectTeacher) || [];
     const visibleCount = useSelector(selectVisibleCount);
 
-    // const [visibleCount, setVisibleCount] = useState(() => {
-    //     const savedCount = localStorage.getItem("visibleCount");
-    //     return savedCount ? parseInt(savedCount, 10) : 4;
-    // });
-
     useEffect(() => {
         dispatch(featchTeachers());
     }, [dispatch]);
 
-    //**-----Оновлення localStorage при зміні visibleCount--- */ 
-    // useEffect(() => {
-    //     localStorage.setItem("visibleCount", visibleCount);
-    // }, [visibleCount]);
 
     const visibleTeachers = teachers.slice(0, visibleCount);
 
@@ -32,11 +23,6 @@ export default function TeachersList({ selectedLevel}) {
     const loadMore = () => {
         const remainingTeachers = teachers.length - visibleCount;
         
-        // if (remainingTeachers <= 4) {
-        //     setVisibleCount((prevCount) => prevCount + remainingTeachers); 
-        // } else {
-        //     setVisibleCount((prevCount) => prevCount + 4);
-        // }
         if (remainingTeachers <= 4) {
             dispatch(incrementVisibleCount(remainingTeachers));
           } else {
