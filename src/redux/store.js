@@ -13,12 +13,21 @@ const persistFavoritesReducer = persistReducer(
     },
     favoritesReduser
   );
+  
+  const persistTeacherReducer = persistReducer(
+    {
+      key: "teachers",
+      storage,
+      whitelist: ["visibleCount"], // Зберігаємо тільки visibleCount
+    },
+    teacherReduser
+  );
 
 
 const persisteAuthReducer = persistReducer({
     key: "auth-token",
     storage,
-    whitelist: ["token"],
+    whitelist: ["token",  "user", "isLoggedIn"],
 },
 authReduser
 )
@@ -26,7 +35,7 @@ authReduser
 export const store = configureStore({
     reducer: {
         auth:  persisteAuthReducer,
-        teacher: teacherReduser,
+        teacher: persistTeacherReducer,
         favorites: persistFavoritesReducer,
     },
     middleware: (getDefaultMiddleware) =>

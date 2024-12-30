@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-import {auth} from "../../../env/firebase"
+import {auth} from "../../../firebase"
 
 export const registerUser = createAsyncThunk(
     "auth/register",
@@ -66,11 +66,12 @@ export const logout = createAsyncThunk(
     "auth/logout",
     async(_, thunkAPI)=>{
         try {
-            localStorage.removeItem("token");
-            localStorage.removeItem("email");
-            localStorage.removeItem("name");
+            return {};
+            // localStorage.removeItem("token");
+            // localStorage.removeItem("email");
+            // localStorage.removeItem("name");
 
-            return {}
+            // return {}
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
         }

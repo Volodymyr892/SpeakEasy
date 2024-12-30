@@ -25,11 +25,11 @@ const authSlice = createSlice({
             state.isLoggedIn = true;
             state.error = null;
 
-            if(state.token){
-                localStorage.setItem("token", state.token)
-                localStorage.setItem("email", JSON.stringify(state.user));
-                localStorage.setItem("name", state.name); 
-            }
+            // if(state.token){
+            //     localStorage.setItem("token", state.token)
+            //     localStorage.setItem("email", JSON.stringify(state.user));
+            //     localStorage.setItem("name", state.name); 
+            // }
         })
         .addCase(registerUser.rejected, (state, action) =>{
             state.isLoggedIn = false;
@@ -47,11 +47,11 @@ const authSlice = createSlice({
             state.isLoggedIn = true;
             state.error = null;
 
-            if(state.token){
-                localStorage.setItem("token", state.token)
-                localStorage.setItem("email", JSON.stringify(state.user));
-                localStorage.setItem("name", state.name); 
-            }
+            // if(state.token){
+            //     localStorage.setItem("token", state.token)
+            //     localStorage.setItem("email", JSON.stringify(state.user));
+            //     localStorage.setItem("name", state.name); 
+            // }
         })
         .addCase(loginUser.rejected, (state, action) =>{
             state.isLoggedIn = false;
@@ -68,9 +68,9 @@ const authSlice = createSlice({
             state.error = null;
 
             
-                localStorage.setItem("token", state.token)
-                localStorage.setItem("email", state.user);
-                localStorage.setItem("name", state.name); 
+                // localStorage.setItem("token", state.token)
+                // localStorage.setItem("email", state.user);
+                // localStorage.setItem("name", state.name); 
         })
         .addCase(refreshUser.rejected, (state,action) => {
             state.email = null;

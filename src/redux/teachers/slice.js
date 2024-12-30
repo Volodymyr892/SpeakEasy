@@ -8,8 +8,13 @@ const teacher = createSlice({
         isLoading: false,
         error: null,
         page: 1,
+        visibleCount: 4,
     },
-
+    reducers: {
+        incrementVisibleCount(state, action) {
+          state.visibleCount += action.payload;
+        },
+      },
     extraReducers:  builder =>{
         builder
         .addCase(featchTeachers.pending, (state)=>{
@@ -26,5 +31,5 @@ const teacher = createSlice({
         })
     }
 })
-export const { incrementPage } = teacher.actions;
+export const { incrementVisibleCount } = teacher.actions;
 export const teacherReduser = teacher.reducer;
