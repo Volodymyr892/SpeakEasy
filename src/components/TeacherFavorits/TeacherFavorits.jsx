@@ -29,11 +29,11 @@ export default function TeacherFavorits({favorits,  selectedLevel}) {
         if (!isLoggedIn) {
             alert("Please log in to remove favorites");
         } else {
-          dispatch(removeFromFavorites(favorits.id)); 
-      };
+            dispatch(removeFromFavorites(favorits.id)); 
+        };
     }
-  return (
-     <div className={css.container}>
+    return (
+    <div className={css.container}>
             <div className={css.imgCont}> <img className={css.img}  src={favorits.avatar_url} alt="" /></div>
             <ul className={css.contaiterList}>
                 <li className={css.itemOne}>
